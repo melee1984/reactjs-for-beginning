@@ -8,7 +8,7 @@
       "image_url": "https://cf4.s3.souqcdn.com/item/2016/08/07/10/76/96/15/item_XL_10769615_15783417.jpg"
    },
    {
-      "id": 1,
+      "id": 2,
       "name": "Nature's Bounty Extra Strength Hair, Skin & Nails - 5,000mcg, 150 Softgels",
       "description": "Being healthy is always beautiful! With Nature’s Bounty Optimal Solutions Hair, Skin & Nails formula, you’ll look good and feel great! It contains just the right balance of nutrients to help support lustrous hair, strong nails and vibrant skin. This innovative formula provides you with the vital nutrients your body needs to support your natural beauty from within. B Vitamins help with ..",
       "price": "100.00",
@@ -16,12 +16,21 @@
       "image_url": "https://cf1.s3.souqcdn.com/item/2016/02/04/10/03/19/09/item_XL_10031909_12166891.jpg"
    },
    {
-      "id": 1,
+      "id": 3,
       "name": "SugarBearHair Hair Vitamins for 1 Month Supply",
       "description": "SugarBearHair Vitamins repair and strengthen your hair. A pack of these hair vitamins contains 60 gummy pills and are flavored with berries for a sweet taste. Improve the health of your hair with the hair vitamins by SugarBearHair. These vitamins are suitable for vegetarians and vegans and are flavored with natural berries that leave a sweet taste in your mouth and make chewing ...",
       "price": "246.99",
       "buy_url": "https://uae.souq.com/ae-en/sugarbearhair-hair-vitamins-for-1-month-supply-10769615/i/",
-      "image_url": "https://cf4.s3.souqcdn.com/item/2016/08/07/10/76/96/15/item_XL_10769615_15783417.jpg"
+      "image_url": "https://cf2.s3.souqcdn.com/item/2018/05/10/34/15/49/77/item_XL_34154977_132952192.jpg"
+   },
+
+    {
+      "id": 4,
+      "name": "SugarBearHair Hair Vitamins for 1 Month Supply",
+      "description": "SugarBearHair Vitamins repair and strengthen your hair. A pack of these hair vitamins contains 60 gummy pills and are flavored with berries for a sweet taste. Improve the health of your hair with the hair vitamins by SugarBearHair. These vitamins are suitable for vegetarians and vegans and are flavored with natural berries that leave a sweet taste in your mouth and make chewing ...",
+      "price": "246.99",
+      "buy_url": "https://uae.souq.com/ae-en/sugarbearhair-hair-vitamins-for-1-month-supply-10769615/i/",
+      "image_url": "https://cf2.s3.souqcdn.com/item/2017/08/30/23/94/65/11/item_XXL_23946511_34832973.jpg"
    }
   
    

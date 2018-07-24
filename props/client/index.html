@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://fb.me/react-0.14.0.js"></script>
+	<script src="https://fb.me/react-dom-0.14.0.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.25/browser.min.js"></script>
+</head>
+<body>
+	<div id="container"></div>
+
+	<script type="text/babel">
+		
+		var MyComponents = React.createClass({
+			
+			getDefaultProps: function() {
+					return {
+						myString: "with Value"
+					}
+			},
+			
+			propTypes: {
+				myString: React.PropTypes.string.isRequired,
+				MyArray: React.PropTypes.arrayOf(React.PropTypes.string)
+			},
+
+			render: function() {
+				return ( 
+					<div>
+						<h3>myString: {this.props.myString}</h3>
+					</div>
+				)
+			}
+
+		});
+
+		ReactDOM.render(
+				<MyComponents MyArray={["a","b","c"]}></MyComponents>,
+				document.getElementById('container')
+			);
+	</script>
+</body>
+</html>

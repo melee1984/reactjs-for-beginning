@@ -19,7 +19,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-				<div class="col-md-6 col-md-offset-3" >
+				<div class="col-md-12" >
 						<div id="products"></div>
 				</div>
 		</div>
@@ -28,6 +28,29 @@
 	<script type="text/babel">
 
 			var Products = React.createClass({
+				
+				handleProductSubmit: function(product) {
+
+					var products = this.state.productData;
+					var newProducts = products.concat([product]);
+
+					this.setState({productData: newProducts});
+
+					$.ajax({
+						type: 'POST',
+						url: this.state.url,
+						dataTye: 'json',
+						data: product,
+						success: function(data){
+							console.log(data);
+							this.setState({productData: data});
+						}.bind(this),
+						error: function(xhr, status, err){
+							console.log(err);
+						}.bind(this)
+					});
+
+				},
 
 				loadProductData: function(){
 					$.ajax({
@@ -44,11 +67,13 @@
 					});
 
 				},
+
 				getDefaultProps: function(){
 					return {
 						interval: 2000
 					}
 				},
+
 				getInitialState: function() {
 					return {
 						productData: [],	
@@ -56,6 +81,7 @@
 					}
 				
 				},	
+
 				componentDidMount: function(){
 					this.loadProductData();
 				},
@@ -63,26 +89,95 @@
 					return (
 						
 							<div>
-								<h1>Products</h1>
-								<ProductsForm />
-								<ProductsList productData={this.state.productData}/>
+								<div className="row">
+									<div className="col-md-6">
+											<ProductsForm onProductSubmit={this.handleProductSubmit}/>
+									</div>
+									<div className="col-md-6">
+										<ProductsList productData={this.state.productData}/>			
+									</div>
+								</div>
 							</div>
 					)
 				}
 			});
 
 			var ProductsForm = React.createClass({
+			
+				handleSubmit: function(e) {
+					e.preventDefault();
+
+					var product = {
+						id: this.refs.id.value.trim(),
+						name: this.refs.name.value.trim(),
+						description: this.refs.description.value.trim(),
+						price: this.refs.price.value.trim(),
+						buy_url: this.refs.buy_url.value.trim(),
+						image_url: this.refs.img_url.value.trim(),
+					}
+					
+					if (!product.id || !product.name || !product.description) {
+						alert('Please fill in ID and Name');
+					}
+
+					this.props.onProductSubmit(product);
+
+					this.refs.id.value = "";
+					this.refs.name.value = "";
+					this.refs.description.value = "";
+					this.refs.price.value = "";
+					this.refs.buy_url.value = "";
+					this.refs.img_url.value = "";
+				},	
+
 				render: function() {
 					return (
 							<div>
 								<h2>Form</h2>
+								<form onSubmit={this.handleSubmit}>
+										<div className="from-group">
+											<label>Product Id</label>
+											<input type="text" className="form-control" placeholder="Enter ID" ref="id"/>
+										</div>
+
+										<div className="from-group">
+											<label>Product Name</label>
+											<input type="text" className="form-control" placeholder="Enter Name" ref="name"/>
+										</div>
+
+										<div className="from-group">
+											<label>Description</label>
+											<input type="text" className="form-control" placeholder="Enter Description" ref="description"/>
+										</div>
+
+										<div className="from-group">
+											<label>Price</label>
+											<input type="text" className="form-control" placeholder="Enter Price" ref="price"/>
+										</div>
+
+										<div className="from-group">
+											<label>Buy Url</label>
+											<input type="text" className="form-control" placeholder="Enter Buy URL" ref="buy_url"/>
+										</div>
+
+										<div className="from-group">
+											<label>Image URL</label>
+											<input type="text" className="form-control" placeholder="Enter Image Url" ref="img_url"/>
+										</div>
+										<br/>
+										<button type="submit" className="btn btn-default btn-primary">Submit</button>
+
+
+								</form>
 							</div>
 					)
 				}
 			});
 
 			var ProductsList = React.createClass({
+				
 				render: function() {
+
 					var productNodes = this.props.productData.map(function(product, index){
 
 						var productFields = {
@@ -100,6 +195,7 @@
 						)
 
 					});
+
 					return (
 						
 							<div>
@@ -120,7 +216,12 @@
 										<img src={this.props.productFields.image_url} className="img img-responsive"/>
 									</div>
 									<div className="col-md-8">
-										<h3>{this.props.productFields.name}</h3>
+										<h3>
+											<a href={this.props.productFields.buy_url}>
+												{this.props.productFields.name}
+											</a>
+										</h3>
+										<h4>{this.props.productFields.price}</h4>
 										<p>{this.props.productFields.description}</p>
 									</div>
 								</div>
@@ -128,8 +229,6 @@
 					)
 				}
 			});
-
-	
 
 		ReactDOM.render(
 			<Products/>,

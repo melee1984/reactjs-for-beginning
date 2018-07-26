@@ -1,19 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Button, Alert } from 'react-bootstrap';
 import './App.css';
+import Request from 'superagent';
 
 class App extends Component {
+
+  loadProductData() {
+
+      var url = "http://www.omdbapi.com/?i=tt3896198&apikey=56ef85ff&s=star&y=&r=json&lot=short";
+      
+      Request.get(url).then((data) => {
+        this.setState({
+            productData: data.body.Search,
+            total: data.body.totalResults
+          });
+      });
+
+  }
+  getInitialState()  {
+    return {
+      productData: [],  
+      url: '/api/products'
+    }
+  }
+  componentWillMount() {
+      console.log('1');
+      this.loadProductData();
+  }
+
+  componentDidMount() {
+    console.log('2');
+  }
+
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="col-md-12">
+          
+            <Alert bsStyle="warning">
+            <strong>Holy guacamole!</strong> Best check yo self, you're not looking too
+            good.
+          </Alert>
+        </div>
       </div>
+
     );
   }
 }

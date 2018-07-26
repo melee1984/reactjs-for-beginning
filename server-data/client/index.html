@@ -109,10 +109,6 @@
 				handleSubmit: function(e) {
 					e.preventDefault();
 
-
-					console.log(this.refs);
-					return;
-
 					var product = {
 						id: this.refs.id.value.trim(),
 						name: this.refs.name.value.trim(),
@@ -125,7 +121,7 @@
 					if (!product.id || !product.name || !product.description) {
 						alert('Please fill in ID and Name');
 					}
-
+					
 					this.props.onProductSubmit(product);
 
 					this.refs.id.value = "";

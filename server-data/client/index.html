@@ -13,8 +13,8 @@
 			font-size:14px;
 		}
 	</style>
-</head>
 
+</head>
 
 <body>
 	<div class="container">
@@ -23,11 +23,12 @@
 						<div id="products"></div>
 				</div>
 		</div>
+
 	</div>
-	
+
 	<script type="text/babel">
 
-			var Products = React.createClass({
+		var Products = React.createClass({
 				
 				handleProductSubmit: function(product) {
 
@@ -98,6 +99,7 @@
 									</div>
 								</div>
 							</div>
+
 					)
 				}
 			});
@@ -108,6 +110,9 @@
 					e.preventDefault();
 
 					var product = {
+
+						id: this.refs.id.value.trim();
+						
 						id: this.refs.id.value.trim(),
 						name: this.refs.name.value.trim(),
 						description: this.refs.description.value.trim(),
@@ -134,7 +139,7 @@
 					return (
 							<div>
 								<h2>Form</h2>
-								<form onSubmit={this.handleSubmit}>
+									<form onSubmit={this.handleSubmit}>
 										<div className="from-group">
 											<label>Product Id</label>
 											<input type="text" className="form-control" placeholder="Enter ID" ref="id"/>

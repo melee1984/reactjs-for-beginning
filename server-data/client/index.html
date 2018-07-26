@@ -109,10 +109,11 @@
 				handleSubmit: function(e) {
 					e.preventDefault();
 
-					var product = {
 
-						id: this.refs.id.value.trim();
-						
+					console.log(this.refs);
+					return;
+
+					var product = {
 						id: this.refs.id.value.trim(),
 						name: this.refs.name.value.trim(),
 						description: this.refs.description.value.trim(),

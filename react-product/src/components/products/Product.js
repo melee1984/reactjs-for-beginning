@@ -4,9 +4,7 @@ import Request              from 'superagent';
 import _                    from 'lodash';
 
 
-
 import ProductList from '../../components/products/ProductList.js';
-
 
 
 // const propTypes = {
@@ -22,6 +20,7 @@ class Product extends Component {
   constructor () {
     super();
     this.state = {};
+
   }
 
   getInitialState()  {
@@ -31,9 +30,9 @@ class Product extends Component {
     }
   }
 
-  loadProductData() {
+  loadProductData(query="star") {
 
-      var url = "http://www.omdbapi.com/?i=tt3896198&apikey=56ef85ff&s=star&y=&r=json&lot=short";
+      var url = "http://www.omdbapi.com/?i=tt3896198&apikey=56ef85ff&s="+query+"&y=&r=json&lot=short";
       Request.get(url).then((data) => {
         this.setState({
             productData: data.body.Search,
@@ -49,7 +48,10 @@ class Product extends Component {
     console.log('will mount');
   }
 
-
+  searchRequest() {
+      this.loadProductData(this.refs.search.value);
+  }
+ 
   render() {
 
     var movies = _.map(this.state.productData, (movie) => {
@@ -62,16 +64,24 @@ class Product extends Component {
             }
 
           return(
+
               <ProductList key={productFields.title} productFields={productFields} />
             )
 
       });
 
-
       return (
 
         <div>
+
            <div className="container">    
+
+             <div className="col-md-6 ">
+                 <input onChange={ (e) => { this.searchRequest(); } } type="text" ref="search" className="form-control" placeholder="Search" />
+              </div>
+              <div className="clearFix"></div>
+              <hr/>
+
               {movies}
            </div>
         </div>

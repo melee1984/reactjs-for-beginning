@@ -46,20 +46,15 @@ class ProductList extends Component {
 
   render() {
         
-
-
         return (
-            <div>
 
-                <div className="col-sm-4 col-md-4">
-                  <div className="panel panel-primary">
-                    <div className="panel-heading">{this.props.productFields.title}</div>
-                    <div className="panel-body"><img src={this.props.productFields.poster} className="img-responsive"  alt="Image"/></div>
-                    <div className="panel-footer">Buy 50 mobiles and get a gift card</div>
-                  </div>
+                <div className="col-sm-3 col-md-3 product-display">
+                    <div className="panel-heading">
+                      {this.props.productFields.title}
+                    </div>
+                    <img src={this.props.productFields.poster} className="img-thumbnail"  alt="Image" style={{width: '80%'}}/>
+                    <div className="panel-footer">{this.props.productFields.Type}</div>
                 </div>
-
-             </div>
         )
   }
 }

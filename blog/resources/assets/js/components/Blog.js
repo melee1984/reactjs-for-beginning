@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 export default class Blog extends Component {
 
@@ -10,6 +11,8 @@ export default class Blog extends Component {
         this.state = {
             blogs: []
         }
+
+        console.log('BLOG');
     }
 
     componentWillMount() {
@@ -21,6 +24,9 @@ export default class Blog extends Component {
         }).catch(errors => {
             console.log(errors)
         });
+    }
+
+    componentWillUnmount  () {
 
     }
 
@@ -28,13 +34,20 @@ export default class Blog extends Component {
         return (
             <div className="container">
                 <ul>  
-               {this.state.blogs.map(blog => <li>{blog.body}</li>)}
+                    
+                    { this.state.blogs.map(blog => 
+                        <Link to={'/blog/'+blog.id}>
+                            <li>{blog.title}</li>
+                        </Link>
+                    )}
+
                </ul>
             </div>
         );
     }
+    
 }
 
-if (document.getElementById('example')) {
-    ReactDOM.render(<Blog />, document.getElementById('example'));
-}
+// if (document.getElementById('example')) {
+//     ReactDOM.render(<Blog />, document.getElementById('example'));
+// }

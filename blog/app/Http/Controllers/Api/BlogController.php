@@ -39,8 +39,9 @@ class BlogController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        // 
+       return Blog::insertRecord($request);
     }
 
     /**
@@ -52,6 +53,8 @@ class BlogController extends Controller
     public function show($id)
     {
         //
+        $blogs = Blog::find($id);
+        return response()->json($blogs);
     }
 
     /**
